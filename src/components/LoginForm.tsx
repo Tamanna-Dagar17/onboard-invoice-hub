@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Building2 } from 'lucide-react';
+import { Building2, Sparkles, Shield, Users } from 'lucide-react';
 import { toast } from 'sonner';
 
 type UserRole = 'vendor' | 'purchase' | 'finance' | 'approver';
@@ -32,91 +32,176 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 p-4 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-blue-400/10 rounded-full blur-3xl"></div>
+    <div className="min-h-screen bg-animated flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Enhanced background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="decoration-blob absolute top-20 left-20 w-72 h-72 bg-purple-400/30"></div>
+        <div className="decoration-blob absolute bottom-20 right-20 w-96 h-96 bg-blue-400/20" style={{animationDelay: '-2s'}}></div>
+        <div className="decoration-blob absolute top-1/2 left-1/3 w-64 h-64 bg-pink-400/25" style={{animationDelay: '-4s'}}></div>
+        
+        {/* Floating geometric shapes */}
+        <div className="absolute top-10 right-10 w-20 h-20 bg-white/10 rounded-2xl rotate-12 floating"></div>
+        <div className="absolute bottom-10 left-10 w-16 h-16 bg-white/10 rounded-full floating" style={{animationDelay: '-1s'}}></div>
+        <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-white/10 rounded-lg rotate-45 floating" style={{animationDelay: '-3s'}}></div>
       </div>
 
-      <Card className="w-full max-w-md shadow-2xl border-0 bg-white/90 backdrop-blur-lg relative z-10 transform hover:scale-105 transition-all duration-300">
-        <CardHeader className="text-center space-y-4 pb-8">
-          <div className="mx-auto w-20 h-20 bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
-            <Building2 className="w-10 h-10 text-white" />
-          </div>
-          <div className="space-y-2">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              Vendor Portal
-            </CardTitle>
-            <CardDescription className="text-gray-600 text-base">
-              Streamlined vendor onboarding and invoice management
-            </CardDescription>
-          </div>
-        </CardHeader>
+      {/* Main login card */}
+      <div className="relative z-10 w-full max-w-md">
+        <Card className="card-modern hover-lift shadow-luxury border-0 bg-white/90 backdrop-blur-2xl">
+          <CardHeader className="text-center space-y-6 pb-8">
+            {/* Enhanced logo section */}
+            <div className="relative mx-auto">
+              <div className="w-24 h-24 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 rounded-3xl flex items-center justify-center shadow-glow transform rotate-3 hover:rotate-0 transition-all duration-500 hover:scale-110">
+                <Building2 className="w-12 h-12 text-white" />
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                  <Sparkles className="w-4 h-4 text-white" />
+                </div>
+              </div>
+              
+              {/* Glowing ring around logo */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-500/20 to-purple-600/20 blur-xl scale-110 -z-10"></div>
+            </div>
+            
+            <div className="space-y-3">
+              <CardTitle className="text-4xl font-bold text-gradient leading-tight">
+                Vendor Portal
+              </CardTitle>
+              <CardDescription className="text-gray-600 text-lg font-medium">
+                Streamlined vendor onboarding and invoice management
+              </CardDescription>
+              
+              {/* Feature highlights */}
+              <div className="flex justify-center space-x-6 mt-4">
+                <div className="flex items-center space-x-2 text-sm text-gray-500">
+                  <Shield className="w-4 h-4 text-green-500" />
+                  <span>Secure</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-500">
+                  <Users className="w-4 h-4 text-blue-500" />
+                  <span>Multi-Role</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-500">
+                  <Sparkles className="w-4 h-4 text-purple-500" />
+                  <span>Modern</span>
+                </div>
+              </div>
+            </div>
+          </CardHeader>
+          
+          <CardContent className="space-y-8 pt-0">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-3">
+                <Label htmlFor="name" className="text-sm font-bold text-gray-700 uppercase tracking-wide">Full Name</Label>
+                <div className="relative">
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="input-modern h-14 text-lg pl-4 pr-4"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-4">
+                    <div className="w-2 h-2 bg-green-400 rounded-full opacity-0 transition-opacity duration-200" style={{opacity: name ? 1 : 0}}></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <Label htmlFor="email" className="text-sm font-bold text-gray-700 uppercase tracking-wide">Email</Label>
+                <div className="relative">
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="input-modern h-14 text-lg pl-4 pr-4"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-4">
+                    <div className="w-2 h-2 bg-green-400 rounded-full opacity-0 transition-opacity duration-200" style={{opacity: email ? 1 : 0}}></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <Label htmlFor="password" className="text-sm font-bold text-gray-700 uppercase tracking-wide">Password</Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="input-modern h-14 text-lg pl-4 pr-4"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-4">
+                    <div className="w-2 h-2 bg-green-400 rounded-full opacity-0 transition-opacity duration-200" style={{opacity: password ? 1 : 0}}></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <Label htmlFor="role" className="text-sm font-bold text-gray-700 uppercase tracking-wide">Role</Label>
+                <Select value={role} onValueChange={(value: UserRole) => setRole(value)}>
+                  <SelectTrigger className="h-14 text-lg input-modern border-2">
+                    <SelectValue placeholder="Select your role" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white/95 backdrop-blur-xl border-2 border-gray-200 rounded-2xl shadow-luxury">
+                    <SelectItem value="vendor" className="text-lg py-3 focus:bg-gradient-to-r focus:from-blue-50 focus:to-indigo-50 rounded-lg m-1">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                        <span>Vendor</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="purchase" className="text-lg py-3 focus:bg-gradient-to-r focus:from-green-50 focus:to-emerald-50 rounded-lg m-1">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span>Purchase Department</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="finance" className="text-lg py-3 focus:bg-gradient-to-r focus:from-purple-50 focus:to-pink-50 rounded-lg m-1">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                        <span>Finance Department</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="approver" className="text-lg py-3 focus:bg-gradient-to-r focus:from-orange-50 focus:to-red-50 rounded-lg m-1">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                        <span>Approver</span>
+                      </div>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <Button 
+                type="submit" 
+                className="w-full h-16 text-lg font-bold btn-gradient rounded-2xl shadow-luxury hover:shadow-glow transform transition-all duration-300 hover:scale-105 mt-8"
+              >
+                <span className="relative z-10">Sign In to Portal</span>
+              </Button>
+            </form>
+            
+            {/* Additional visual elements */}
+            <div className="text-center pt-4">
+              <div className="flex items-center justify-center space-x-2 text-xs text-gray-400">
+                <div className="w-8 h-px bg-gradient-to-r from-transparent to-gray-300"></div>
+                <span className="uppercase tracking-widest font-semibold">Secure Login</span>
+                <div className="w-8 h-px bg-gradient-to-l from-transparent to-gray-300"></div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
         
-        <CardContent className="space-y-6 pt-0">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-sm font-semibold text-gray-700">Full Name</Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="Enter your full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="h-12 transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent border-gray-200 rounded-lg"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-semibold text-gray-700">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="h-12 transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent border-gray-200 rounded-lg"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-semibold text-gray-700">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="h-12 transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent border-gray-200 rounded-lg"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="role" className="text-sm font-semibold text-gray-700">Role</Label>
-              <Select value={role} onValueChange={(value: UserRole) => setRole(value)}>
-                <SelectTrigger className="h-12 transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent border-gray-200 rounded-lg">
-                  <SelectValue placeholder="Select your role" />
-                </SelectTrigger>
-                <SelectContent className="bg-white/95 backdrop-blur-sm border-gray-200">
-                  <SelectItem value="vendor" className="focus:bg-blue-50">Vendor</SelectItem>
-                  <SelectItem value="purchase" className="focus:bg-blue-50">Purchase Department</SelectItem>
-                  <SelectItem value="finance" className="focus:bg-blue-50">Finance Department</SelectItem>
-                  <SelectItem value="approver" className="focus:bg-blue-50">Approver</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <Button 
-              type="submit" 
-              className="w-full h-12 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 hover:from-blue-600 hover:via-indigo-700 hover:to-purple-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            >
-              Sign In
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+        {/* Bottom decorative text */}
+        <div className="text-center mt-8">
+          <p className="text-white/80 text-sm font-medium">
+            Experience the future of vendor management
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
